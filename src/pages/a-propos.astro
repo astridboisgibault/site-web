@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+const email = 'bonjour@astridboisgibault.fr';
+---
+<Base title="À propos — Astrid Boisgibault" description="À propos d’Astrid Boisgibault, céramiste. Parcours, expositions, contact.">
+  <div class="apropos">
+    <div>
+      <img src="https://picsum.photos/seed/astrid-portrait/640/800" alt="Portrait d’Astrid Boisgibault (photo factice)" width="640" height="800" />
+    </div>
+    <div>
+      <h1>À propos</h1>
+      <p>
+        Je suis <strong>Astrid Boisgibault</strong>, céramiste (texte factice).
+        Je tourne et modèle des pièces utilitaires et sculpturales en grès,
+        faïence et porcelaine, entre usage quotidien et installation.
+      </p>
+      <p>
+        Mon travail explore la matière brute, l’empreinte du geste et les
+        surfaces mates et douces. Chaque pièce est unique et fabriquée à l’atelier.
+      </p>
+      <p>
+        Contact : <a href={`mailto:${email}`}>{email}</a>
+      </p>
+      <div class="cv">
+        <h2>Expositions (factice)</h2>
+        <ul>
+          <li>2024 — Rivage, galerie Exemple, Paris</li>
+          <li>2023 — Totems de jardin, Journées de la céramique</li>
+          <li>2022 — Herbier, marché de potiers</li>
+        </ul>
+        <h2>Formation (factice)</h2>
+        <ul>
+          <li>2020-2022 — CAP Tournage céramique</li>
+          <li>Depuis 2022 — Atelier personnel</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Base>

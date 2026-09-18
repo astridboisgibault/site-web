@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { projets } from '../data/projets';
+---
+<Base title="Astrid Boisgibault — céramique">
+  <div class="nuage">
+    {projets.map((p, i) => (
+      <a class={`card n${i % 5}`} href={`/projet/${p.slug}`}>
+        <span class="img-wrap">
+          <img src={p.cover} alt={`${p.titre} — ${p.technique}`} loading="lazy" width="1400" height="1000" />
+        </span>
+        <div class="card-meta">
+          <span class="titre">{p.titre}</span>
+          <span class="infos">{p.annee} — {p.technique}</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</Base>

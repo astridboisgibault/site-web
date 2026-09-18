@@ -1,0 +1,17 @@
+{
+  "name": "astrid",
+  "version": "1.0.0",
+  "description": "Site qui permet de pr\u00e9senter mon travail artistique (je suis Astrid Boisgibault).",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "astro": "^4.16.19"
+  }
+}

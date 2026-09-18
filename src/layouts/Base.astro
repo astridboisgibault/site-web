@@ -1,0 +1,146 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Astrid Boisgibault — céramique, pièces et projets.' } = Astro.props;
+const email = 'bonjour@astridboisgibault.fr';
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">Astrid Boisgibault</a>
+      <nav class="nav">
+        <a href="/">Index</a>
+        <a href="/a-propos">À propos</a>
+        <a href={`mailto:${email}`}>Email</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <span>© Astrid Boisgibault — site factice de démonstration</span>
+      <a href={`mailto:${email}`}>{email}</a>
+    </footer>
+
+    <style is:global>
+      :root {
+        --noir: #111;
+        --gris: #666;
+        --fond: #fff;
+        --max: 1180px;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--fond);
+        color: var(--noir);
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+      }
+      a { color: var(--noir); text-decoration: none; }
+      a:hover { text-decoration: underline; text-underline-offset: 3px; }
+      .site-header {
+        position: sticky;
+        top: 0;
+        background: rgba(255,255,255,.95);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 18px 28px;
+        border-bottom: 1px solid #eee;
+        z-index: 10;
+      }
+      .brand {
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: -0.01em;
+      }
+      .nav { display: flex; gap: 22px; font-size: 15px; }
+      .container {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 56px 28px 80px;
+      }
+      .site-footer {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 24px 28px 56px;
+        border-top: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-size: 14px;
+        color: var(--gris);
+      }
+      .site-footer a { color: var(--gris); }
+      img { display: block; max-width: 100%; height: auto; background: #f4f4f4; }
+      /* Accueil — nuage */
+      .nuage {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 72px 32px;
+        align-items: start;
+      }
+      .nuage .card { display: block; min-width: 0; }
+      .nuage .card:hover { text-decoration: none; }
+      .nuage .img-wrap { display: block; overflow: hidden; background: #f4f4f4; }
+      .nuage img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+      .nuage .card:hover img { transform: scale(1.03); }
+      .nuage .n0 { grid-column: 1 / 8; }
+      .nuage .n0 img { aspect-ratio: 4 / 3; }
+      .nuage .n1 { grid-column: 9 / 13; margin-top: 140px; }
+      .nuage .n1 img { aspect-ratio: 3 / 4; }
+      .nuage .n2 { grid-column: 2 / 7; margin-top: 24px; }
+      .nuage .n2 img { aspect-ratio: 1 / 1; }
+      .nuage .n3 { grid-column: 7 / 13; margin-top: -20px; }
+      .nuage .n3 img { aspect-ratio: 4 / 3; }
+      .nuage .n4 { grid-column: 3 / 11; margin-top: 24px; }
+      .nuage .n4 img { aspect-ratio: 16 / 10; }
+      .card-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding-top: 10px;
+        font-size: 14px;
+      }
+      .card-meta .titre { font-weight: 600; }
+      .card-meta .infos { color: var(--gris); }
+      @media (max-width: 760px) {
+        .nuage { display: flex; flex-direction: column; gap: 56px; }
+        .nuage .n0, .nuage .n1, .nuage .n2, .nuage .n3, .nuage .n4 { margin-top: 0; }
+      }
+      /* Page projet */
+      .projet-head { margin-bottom: 32px; }
+      .projet-head h1 { font-size: clamp(28px, 4vw, 42px); margin: 0 0 8px; letter-spacing: -0.02em; }
+      .projet-infos { color: var(--gris); font-size: 16px; margin-bottom: 20px; }
+      .projet-texte { max-width: 62ch; font-size: 17px; margin: 0 0 48px; }
+      .galerie { display: flex; flex-direction: column; gap: 56px; }
+      .galerie figure { margin: 0; }
+      .galerie figcaption { color: var(--gris); font-size: 14px; padding-top: 8px; }
+      .projet-nav { display: flex; justify-content: space-between; margin-top: 72px; border-top: 1px solid #eee; padding-top: 20px; }
+      /* À propos */
+      .apropos { display: grid; gap: 32px; }
+      @media (min-width: 760px) {
+        .apropos { grid-template-columns: 320px 1fr; align-items: start; }
+      }
+      .apropos h1 { margin-top: 0; letter-spacing: -0.02em; }
+      .cv { margin-top: 32px; }
+      .cv li { margin-bottom: 6px; }
+    </style>
+  </body>
+</html>

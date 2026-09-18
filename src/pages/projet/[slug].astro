@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import { projets } from '../../data/projets';
+
+export function getStaticPaths() {
+  return projets.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const index = projets.findIndex((p) => p.slug === slug);
+const projet = projets[index];
+if (!projet) throw new Error(`Projet introuvable : ${slug}`);
+const prev = projets[(index - 1 + projets.length) % projets.length];
+const next = projets[(index + 1) % projets.length];
+---
+<Base title={`${projet.titre} — Astrid Boisgibault`} description={`${projet.titre}, ${projet.annee}, ${projet.technique}`}>
+  <article>
+    <div class="projet-head">
+      <h1>{projet.titre}</h1>
+      <div class="projet-infos">{projet.annee} — {projet.technique}</div>
+    </div>
+
+    <p class="projet-texte">{projet.texte}</p>
+
+    <div class="galerie">
+      {projet.galerie.map((img) => (
+        <figure>
+          <img src={img.src} alt={img.legende} loading="lazy" />
+          <figcaption>{img.legende}</figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <div class="projet-nav">
+      <a href={`/projet/${prev.slug}`}>← {prev.titre}</a>
+      <a href="/">Index</a>
+      <a href={`/projet/${next.slug}`}>{next.titre} →</a>
+    </div>
+  </article>
+</Base>
