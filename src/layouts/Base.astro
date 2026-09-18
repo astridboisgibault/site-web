@@ -4,6 +4,7 @@ interface Props {
   description?: string;
 }
 const { title, description = 'Astrid Boisgibault — céramique, pièces et projets.' } = Astro.props;
+import { withBase } from '../lib/url';
 const email = 'bonjour@astridboisgibault.fr';
 ---
 <!doctype html>
@@ -13,14 +14,14 @@ const email = 'bonjour@astridboisgibault.fr';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/">Astrid Boisgibault</a>
+      <a class="brand" href={withBase('/')}>Astrid Boisgibault</a>
       <nav class="nav">
-        <a href="/">Index</a>
-        <a href="/a-propos">À propos</a>
+        <a href={withBase('/')}>Index</a>
+        <a href={withBase('/a-propos')}>À propos</a>
         <a href={`mailto:${email}`}>Email</a>
       </nav>
     </header>

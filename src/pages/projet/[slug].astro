@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { projets } from '../../data/projets';
+import { withBase } from '../../lib/url';
 
 export function getStaticPaths() {
   return projets.map((p) => ({ params: { slug: p.slug } }));
@@ -32,9 +33,9 @@ const next = projets[(index + 1) % projets.length];
     </div>
 
     <div class="projet-nav">
-      <a href={`/projet/${prev.slug}`}>← {prev.titre}</a>
-      <a href="/">Index</a>
-      <a href={`/projet/${next.slug}`}>{next.titre} →</a>
+      <a href={withBase(`/projet/${prev.slug}`)}>← {prev.titre}</a>
+      <a href={withBase('/')}>Index</a>
+      <a href={withBase(`/projet/${next.slug}`)}>{next.titre} →</a>
     </div>
   </article>
 </Base>
